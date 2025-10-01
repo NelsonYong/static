@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 主题颜色 - 与header渐变起始色保持一致 -->
+  <meta name="theme-color" content="#1a2332">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Android Chrome -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <title>南京旅游计划 | 2025年10月2日-7日</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 222.2 84% 4.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 222.2 84% 4.9%;
+      --primary: 222.2 47.4% 11.2%;
+      --primary-foreground: 210 40% 98%;
+      --secondary: 210 40% 96.1%;
+      --secondary-foreground: 222.2 47.4% 11.2%;
+      --muted: 210 40% 96.1%;
+      --muted-foreground: 215.4 16.3% 46.9%;
+      --accent: 210 40% 96.1%;
+      --accent-foreground: 222.2 47.4% 11.2%;
+      --border: 214.3 31.8% 91.4%;
+      --radius: 0.5rem;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f8f9fa;
+      color: hsl(var(--foreground));
+      line-height: 1.6;
+      padding: 0;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 0;
+      padding: 2rem 1rem 1.5rem;
+      background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(222.2 47.4% 20%) 100%);
+      color: hsl(var(--primary-foreground));
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .header .subtitle {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+
+    .section {
+      margin-bottom: 0;
+      background: hsl(var(--card));
+      border: none;
+      border-radius: 0;
+      padding: 1rem;
+      box-shadow: none;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: hsl(var(--foreground));
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .day-section {
+      margin-bottom: 0;
+      background: hsl(var(--card));
+      padding: 1rem;
+      border-bottom: 8px solid #f8f9fa;
+    }
+
+    .day-header {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: hsl(var(--foreground));
+      border-bottom: 2px solid hsl(var(--primary));
+      padding-bottom: 0.5rem;
+    }
+
+    /* 移动端优先：卡片式布局替代表格 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      display: block;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tbody {
+      display: block;
+    }
+
+    tr {
+      display: block;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 1rem 0;
+      margin-bottom: 0;
+      box-shadow: none;
+      transition: none;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    tr:last-child {
+      border-bottom: none;
+    }
+
+    tr:active {
+      background: #fafafa;
+    }
+
+    td {
+      display: block;
+      padding: 0.3rem 0;
+      border: none;
+      text-align: left;
+    }
+
+    td:before {
+      content: attr(data-label);
+      font-weight: 600;
+      color: hsl(var(--primary));
+      display: inline-block;
+      margin-right: 0.5rem;
+      min-width: 60px;
+    }
+
+    .time-col {
+      font-weight: 700;
+      color: hsl(var(--primary));
+      font-size: 0.95rem;
+      padding-top: 0 !important;
+      padding-bottom: 0.2rem !important;
+    }
+
+    .activity-col {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: hsl(var(--foreground));
+      padding-bottom: 0.2rem !important;
+    }
+
+    .details-col {
+      line-height: 1.5;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .details-col strong {
+      color: hsl(var(--foreground));
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.85rem;
+    }
+
+    .note-col {
+      text-align: left;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      background: #f0f0f0;
+      color: #666;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .badge-success {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .badge-warning {
+      background: #fff3e0;
+      color: #e65100;
+    }
+
+    .badge-danger {
+      background: #ffebee;
+      color: #c62828;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .tip-card {
+      background: #f8f9fa;
+      padding: 0.75rem;
+      border-radius: 4px;
+      border-left: 3px solid hsl(var(--primary));
+    }
+
+    .tip-card h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: hsl(var(--foreground));
+    }
+
+    .tip-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .tip-card li {
+      padding: 0.3rem 0;
+      padding-left: 1rem;
+      position: relative;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .tip-card li:before {
+      content: "•";
+      position: absolute;
+      left: 0.2rem;
+      color: hsl(var(--primary));
+      font-weight: bold;
+    }
+
+    .warning-box {
+      background: #fff9e6;
+      border: none;
+      border-left: 3px solid #ffc107;
+      padding: 0.6rem;
+      border-radius: 3px;
+      margin: 0.4rem 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .warning-box strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.85rem;
+    }
+
+    .info-box {
+      background: #e3f2fd;
+      border: none;
+      border-left: 3px solid #2196f3;
+      padding: 0.6rem;
+      border-radius: 3px;
+      margin: 0.4rem 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .info-box strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.85rem;
+    }
+
+    /* 快捷导航按钮 */
+    .quick-nav {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    .nav-btn {
+      display: block;
+      width: 50px;
+      height: 50px;
+      background: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      border-radius: 50%;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-btn:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 日期导航 */
+    .date-nav {
+      display: flex;
+      overflow-x: auto;
+      gap: 0.5rem;
+      padding: 0 0 0.5rem;
+      margin-bottom: 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      background: white;
+    }
+
+    .date-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .date-btn {
+      flex-shrink: 0;
+      padding: 0.5rem 0.85rem;
+      background: transparent;
+      color: #666;
+      border: none;
+      border-bottom: 2px solid transparent;
+      border-radius: 0;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .date-btn:active {
+      background: #f8f9fa;
+    }
+
+    .date-btn.active {
+      background: transparent;
+      color: hsl(var(--primary));
+      border-bottom-color: hsl(var(--primary));
+      font-weight: 600;
+    }
+
+    /* 日程显示/隐藏 */
+    .day-section {
+      display: none;
+    }
+
+    .day-section.active {
+      display: block;
+    }
+
+    /* 快捷图标区域 */
+    .quick-icons {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      background: white;
+      border-bottom: 1px solid hsl(var(--border));
+      justify-content: center;
+    }
+
+    .icon-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.75rem 1rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-radius: 8px;
+    }
+
+    .icon-btn:active {
+      background: #f8f9fa;
+      transform: scale(0.95);
+    }
+
+    .icon-btn-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .icon-btn-text {
+      font-size: 0.75rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    /* 弹窗样式 - 全屏遮罩 */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      backdrop-filter: blur(2px);
+    }
+
+    .modal.show {
+      display: block;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      width: calc(100% - 2rem);
+      max-width: 500px;
+      margin: 2rem auto;
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      animation: modalSlideIn 0.3s ease;
+      position: relative;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      padding: 1.25rem 1rem;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 10;
+    }
+
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: hsl(var(--foreground));
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      color: #999;
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:active {
+      background: #f0f0f0;
+    }
+
+    .modal-body {
+      padding: 1rem;
+    }
+
+    .modal-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-section h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: hsl(var(--foreground));
+    }
+
+    .modal-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .modal-section li {
+      padding: 0.4rem 0 0.4rem 1.2rem;
+      position: relative;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #666;
+    }
+
+    .modal-section li:before {
+      content: "•";
+      position: absolute;
+      left: 0.3rem;
+      color: hsl(var(--primary));
+      font-weight: bold;
+    }
+
+    /* 桌面端适配 */
+    @media (min-width: 769px) {
+      body {
+        font-size: 16px;
+        padding: 2rem 1rem;
+      }
+
+      .container {
+        padding: 0;
+      }
+
+      .header {
+        padding: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+      }
+
+      .header .subtitle {
+        font-size: 1.2rem;
+      }
+
+      .section {
+        padding: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        position: static;
+      }
+
+      .day-header {
+        font-size: 1.3rem;
+        padding: 1rem 1.5rem;
+        position: static;
+      }
+
+      /* 桌面端恢复表格布局 */
+      thead {
+        display: table-header-group;
+      }
+
+      tbody {
+        display: table-row-group;
+      }
+
+      tr {
+        display: table-row;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+      }
+
+      tr:hover {
+        background: hsl(var(--accent));
+      }
+
+      td {
+        display: table-cell;
+        padding: 1rem 0.75rem;
+        border-bottom: 1px solid hsl(var(--border));
+        vertical-align: top;
+      }
+
+      td:before {
+        content: none;
+      }
+
+      th {
+        display: table-cell;
+        background: hsl(var(--muted));
+        padding: 0.75rem;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 2px solid hsl(var(--border));
+        color: hsl(var(--muted-foreground));
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .time-col {
+        width: 120px;
+      }
+
+      .activity-col {
+        width: 150px;
+      }
+
+      .note-col {
+        width: 100px;
+        text-align: center;
+      }
+
+      .tips-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .tip-card {
+        padding: 1.5rem;
+      }
+
+      .quick-nav {
+        display: none;
+      }
+    }
+
+    /* 可点击的地点名称样式 */
+    .place-link {
+      color: #667eea;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 2px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+
+    .place-link:hover {
+      color: #764ba2;
+      text-decoration-style: solid;
+    }
+
+    .place-link:active {
+      color: #5a4a8a;
+    }
+
+    .activity-col {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    /* 触摸优化 */
+    @media (hover: none) and (pointer: coarse) {
+
+      .badge,
+      .nav-btn,
+      tr,
+      .nav-link {
+        -webkit-tap-highlight-color: transparent;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>南京旅游计划 Go 🚀</h1>
+      <p class="subtitle">2025年10月2日 - 10月7日 | 六天五夜深度游</p>
+    </div>
+
+    <!-- 快捷图标 -->
+    <div class="quick-icons">
+      <button class="icon-btn" onclick="openModal('booking')">
+        <span class="icon-btn-icon">🎫</span>
+        <span class="icon-btn-text">预约</span>
+      </button>
+      <button class="icon-btn" onclick="openModal('notes')">
+        <span class="icon-btn-icon">⚠️</span>
+        <span class="icon-btn-text">注意事项</span>
+      </button>
+      <button class="icon-btn" onclick="openModal('tips')">
+        <span class="icon-btn-icon">💡</span>
+        <span class="icon-btn-text">小贴士</span>
+      </button>
+    </div>
+
+    <!-- 日期导航 -->
+    <div class="section">
+      <h2 class="section-title">📅 每日行程</h2>
+      <div class="date-nav">
+        <button class="date-btn active" data-day="day1">10月2日 抵达</button>
+        <button class="date-btn" data-day="day2">10月3日 医院</button>
+        <button class="date-btn" data-day="day3">10月4日 历史</button>
+        <button class="date-btn" data-day="day4">10月5日 自然</button>
+        <button class="date-btn" data-day="day5">10月6日 艺术</button>
+        <button class="date-btn" data-day="day6">10月7日 博物馆</button>
+      </div>
+    </div>
+
+    <!-- 10月2日 -->
+    <div class="section day-section active" id="day1">
+      <div class="day-header">📅 10月2日 (星期四) - 抵达日</div>
+      <table>
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>活动</th>
+            <th>备注</th>
+            <th>预约</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time-col">12:00</td>
+            <td class="activity-col">抵达南京</td>
+            <td class="details-col">入住酒店,办理登记</td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">13:30-14:30</td>
+            <td class="activity-col">午餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('南京大排档', 32.040833, 118.789722)">南京大排档</span>(尝试鸭血粉丝汤、盐水鸭)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('小厨娘淮扬菜', 32.041944, 118.786111)">小厨娘淮扬菜</span>(本地人28年老品牌)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">15:00-17:30</td>
+            <td class="activity-col">
+              <span class="place-link" onclick="navigateTo('夫子庙', 32.021944, 118.794528)">夫子庙秦淮河一带</span>
+            </td>
+            <td class="details-col">
+              ⭐⭐⭐⭐⭐ 南京文化中心必去<br>
+              免费,24小时开放,无需预约<br>
+              🚇地铁3号线-夫子庙站<br>
+              💡可购买特色小吃,感受金陵气息
+            </td>
+            <td class="note-col"><span class="badge">❌无需预约</span></td>
+          </tr>
+          <tr>
+            <td class="time-col">18:00-19:30</td>
+            <td class="activity-col">晚餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('马道街', 32.036389, 118.795278)">马道街美食</span>(牛肉锅贴、鸡汁汤包)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('科巷', 32.036944, 118.801389)">科巷美食街</span>(许阿姨、鸿福面馆、陶记扒鸡)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('茶南街', 32.037222, 118.796944)">茶南美食街</span>(小李汤包、安家汤圆、七家湾)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">20:00-21:30</td>
+            <td class="activity-col">夜游选择</td>
+            <td class="details-col">
+              <strong>方案A:</strong><span class="place-link" onclick="navigateTo('秦淮河游船码头', 32.023889, 118.792778)">秦淮河夜游</span>(观赏夜景,需预约)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('夫子庙', 32.021944, 118.794528)">夫子庙步行游览</span>(免费,千年古韵)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('老门东', 32.031111, 118.795556)">老门东夜景</span>(免费,历史街区金陵气息浓烈)
+            </td>
+            <td class="note-col">方案A需预约</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 10月3日 -->
+    <div class="section day-section" id="day2">
+      <div class="day-header">📅 10月3日 (星期五) - 医院日</div>
+      <table>
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>活动</th>
+            <th>备注</th>
+            <th>预约</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time-col">09:00-11:00</td>
+            <td class="activity-col">前往医院</td>
+            <td class="details-col">按预约时间就诊</td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">12:00-13:00</td>
+            <td class="activity-col">午餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('南京大牌档', 32.040833, 118.789722)">南京大牌档</span>(金陵菜系)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('竹里馆', 32.030556, 118.795833)">竹里馆</span>(老门东氛围淮扬家常菜,用料巨好)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('枣玛露脊骨土豆汤', 32.044722, 118.779167)">枣玛露脊骨土豆汤</span>(六年必吃榜,秋天吃很舒服)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">14:00-16:30</td>
+            <td class="activity-col">
+              <span class="place-link" onclick="navigateTo('中山陵', 32.056854, 118.848131)">中山陵游览</span>
+            </td>
+            <td class="details-col">
+              ⭐⭐⭐⭐⭐ 历史意义重大,环境优美<br>
+              免费,提前7天预约,每日16:00放票<br>
+              🚇地铁2号线-中山陵站<br>
+              💡避开中午去不然很晒<br>
+              ⚠️必须携带身份ID
+            </td>
+            <td class="note-col"><span class="badge badge-success">✅提前7天</span></td>
+          </tr>
+          <tr>
+            <td class="time-col">17:00-18:30</td>
+            <td class="activity-col">傍晚选择</td>
+            <td class="details-col">
+              <strong>方案A:</strong><span class="place-link" onclick="navigateTo('玄武湖', 32.072083, 118.793611)">玄武湖</span>(绝美日落city walk,本地人最爱,免费)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('南京明城墙', 32.048889, 118.779444)">明城墙</span>(钟山远眺玄武湖低吟鸡鸣寺)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('鸡鸣寺', 32.068056, 118.795556)">鸡鸣寺</span>(南京最古老梵刹,门票10元,无需预约,药师塔祈求健康)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">19:00-20:30</td>
+            <td class="activity-col">晚餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('狮子桥美食街', 32.059167, 118.782500)">狮子桥美食街</span>(南京本地特色小吃)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('泥炉烧肉师', 32.046111, 118.778333)">泥炉烧肉师</span>(绝绝子烤肉!炭烤活鳗鱼、秘制肥牛)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('觅炙现炒海鲜粥火锅', 32.037500, 118.801667)">觅炙现炒海鲜粥火锅</span>(本地人超爱,很正宗很鲜美)<br>
+              <strong>方案D:</strong><span class="place-link" onclick="navigateTo('湖南路', 32.060833, 118.776111)">湖南路美食</span>(超多南京热门美食就在玄武湖旁边)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">21:00-22:00</td>
+            <td class="activity-col">夜生活选择</td>
+            <td class="details-col">
+              <strong>方案A:</strong> 1912酒吧街休闲(体验南京夜生活)<br>
+              <strong>方案B:</strong> 玄武湖夜景散步(免费,能量场)<br>
+              <strong>方案C:</strong> 回酒店休息
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 10月4日 -->
+    <div class="section day-section" id="day3">
+      <div class="day-header">📅 10月4日 (星期六) - 历史文化日</div>
+      <table>
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>活动</th>
+            <th>备注</th>
+            <th>预约</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time-col">08:00-09:00</td>
+            <td class="activity-col">早餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('老门东糕团店', 32.031389, 118.795278)">门东糕团店</span>(传统早点)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('芳婆糕团店', 32.033611, 118.785833)">婆糕团店</span>(南京传统早点)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('三七八巷', 32.042222, 118.786944)">三七八巷</span>(纯道早点,感受市井烟火气)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">09:30-12:00</td>
+            <td class="activity-col">上午景点</td>
+            <td class="details-col">
+              <strong>方案A:</strong><span class="place-link" onclick="navigateTo('南京总统府', 32.044444, 118.792222)">总统府</span>(⭐⭐⭐⭐ 一条总统府半部民国史,门票35元,提前7天预约,每日0:00放票,🚇2/3号线-大行宫-5口)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('六朝博物馆', 32.048333, 118.790556)">六朝博物馆</span>(顶级中式美学很震撼,超多免费章可盖,建议预约)
+            </td>
+            <td class="note-col"><span class="badge badge-success">✅提前7天</span></td>
+          </tr>
+          <tr>
+            <td class="time-col">12:30-13:30</td>
+            <td class="activity-col">午餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('竹里馆', 32.030556, 118.795833)">里馆老门东</span>(超正点氛围淮扬家常菜,用料巨好)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('马祥兴菜馆', 32.059722, 118.777500)">祥兴菜馆湖南路</span>(传统老字号)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('茵卡', 32.045556, 118.779722)">茵卡新街口</span>(本地人爱吃十多年甜品店,斑澜椰子必点)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">14:00-16:30</td>
+            <td class="activity-col">下午景点</td>
+            <td class="details-col">
+              <strong>方案A:</strong><span class="place-link" onclick="navigateTo('老门东', 32.031111, 118.795556)">老门东文创区</span>(⭐⭐⭐ 历史文化街区,传统与现代融合,免费24小时开放,无需预约)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('颐和路民国公馆区', 32.064444, 118.773333)">颐和路民国公馆区</span>(一条颐和路半部民国史,免费)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('先锋书店五台山店', 32.037222, 118.769444)">先锋书店五台山</span>(⭐⭐⭐ 中国最美书店,文艺打卡,10:00-21:00,🚇1号线-珠江路站)
+            </td>
+            <td class="note-col"><span class="badge">❌无需预约</span></td>
+          </tr>
+          <tr>
+            <td class="time-col">17:00-18:30</td>
+            <td class="activity-col">傍晚选择</td>
+            <td class="details-col">
+              <strong>方案A:</strong><span class="place-link" onclick="navigateTo('南京城墙', 32.048889, 118.779444)">南京城墙</span>(⭐⭐⭐⭐ 保存完好的明城墙)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('大报恩寺', 32.016111, 118.784444)">大报恩寺</span>(⭐⭐⭐⭐ 世界七大奇迹之一,门票90元,18:00点灯仪式超震撼)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('阅江楼', 32.088889, 118.738889)">阅江楼</span>(看长江奔涌360度俯瞰南京,门票40元)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">18:30-20:00</td>
+            <td class="activity-col">晚餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('伊兹铁板烧', 32.031667, 118.795278)">兹铁板烧老门东</span>(适合约会聚餐,战斧牛排、爱心炒饭)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('南京大排档', 32.040833, 118.789722)">京大排档总店</span>(正宗鸭血粉丝汤、盐水鸭)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('炭烤活鳗', 32.043889, 118.778611)">南京shou家炭烤活鳗</span>(连续五年必吃榜)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">20:30-22:00</td>
+            <td class="activity-col">夜游选择</td>
+            <td class="details-col">
+              <strong>方案A:</strong><span class="place-link" onclick="navigateTo('南京城墙', 32.048889, 118.779444)">游南京城墙</span>(欣赏夜景,体验古都魅力)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('老门东', 32.031111, 118.795556)">门东夜景</span>(历史时光的回响,免费)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('小西湖', 32.048333, 118.771389)">小西湖</span>(超有感觉艺术街区,city walk人少好拍)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 10月5日 -->
+    <div class="section day-section" id="day4">
+      <div class="day-header">📅 10月5日 (星期日) - 自然风光日</div>
+      <table>
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>活动</th>
+            <th>备注</th>
+            <th>预约</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time-col">08:00-09:00</td>
+            <td class="activity-col">早餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong> 酒店早餐<br>
+              <strong>方案B:</strong> 芳婆糕团店<br>
+              <strong>方案C:</strong> 三七八巷纯道早点
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">09:30-12:00</td>
+            <td class="activity-col">上午景点</td>
+            <td class="details-col">
+              <strong>方案A:</strong><span class="place-link" onclick="navigateTo('栖霞山', 32.157222, 118.953889)">栖霞山</span>(⭐⭐⭐⭐ 秋季红叶绝佳,建议预约)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('南京红山森林动物园', 32.086111, 118.791667)">红山动物园</span>(⭐⭐⭐ 拒绝动物表演,爆火文创,成人40元/学生20元,无需预约,8:30-18:00,🚇1号线-红山动物园站,💡尽量早点去人少动物活跃)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('明孝陵', 32.054722, 118.847222)">明孝陵</span>(zui美600m石象路,门票70元,6:30-18:30,🚇2号线-苜蓿园站)
+            </td>
+            <td class="note-col">方案B无需预约</td>
+          </tr>
+          <tr>
+            <td class="time-col">12:30-13:30</td>
+            <td class="activity-col">午餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('栖霞山农家菜', 32.157500, 118.954167)">间农家菜</span>(当地特色)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('口口火山麻辣烫', 32.086389, 118.792222)">口火山麻辣烫</span>(糖水麻辣烫很绝,小动物周边拍照可爱)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('新街口', 32.045833, 118.778889)">新街口美食</span>(张记灌饼、茶颜、鸡蛋汉堡、黄记玉米汁)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">14:00-16:30</td>
+            <td class="activity-col">下午景点</td>
+            <td class="details-col">
+              <strong>方案A:</strong><span class="place-link" onclick="navigateTo('牛首山', 31.933333, 118.741667)">牛首山文化旅游区</span>(⭐⭐⭐ 安奉佛顶骨舍利,浓厚佛教文化,门票145元,提前2天预约,每日0:00放票)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('美龄宫', 32.051667, 118.842500)">美龄宫</span>(以树为链以宫为坠远东第一别墅)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('瞻园', 32.034722, 118.790000)">瞻园</span>(素有"金陵第一园"之称,门票30元/15元,🚇1号线-三山街-4口)
+            </td>
+            <td class="note-col">方案A需提前2天</td>
+          </tr>
+          <tr>
+            <td class="time-col">17:00-18:30</td>
+            <td class="activity-col">傍晚选择</td>
+            <td class="details-col">
+              <strong>方案A:</strong><span class="place-link" onclick="navigateTo('雨花台', 32.002222, 118.766667)">雨花台</span>(了解革命历史,建议预约)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('鱼嘴湿地公园', 32.046944, 118.705833)">鱼嘴公园</span>(绝美江景晚霞,路边歌手演唱,免费)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('南京眼', 32.059167, 118.715278)">南京眼</span>(感受河西CBD繁华,吹风看晚霞,免费)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">19:00-20:30</td>
+            <td class="activity-col">晚餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('泥炉烧肉师', 32.046111, 118.778333)">炉烧肉师新街口</span>(绝绝子烤肉,炭烤活鳗鱼、秘制肥牛)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('红庙', 32.037778, 118.765278)">庙美食街</span>(恒信甜品、卓粤拉肠、元宝泡芙、老米记)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('湖南路', 32.060833, 118.776111)">湖南路美食</span>
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">21:00-22:00</td>
+            <td class="activity-col">回酒店休息</td>
+            <td class="details-col">整理行李,准备次日行程</td>
+            <td class="note-col">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 10月6日 -->
+    <div class="section day-section" id="day5">
+      <div class="day-header">📅 10月6日 (星期一) - 文化艺术日</div>
+      <table>
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>活动</th>
+            <th>备注</th>
+            <th>预约</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time-col">08:30-09:30</td>
+            <td class="activity-col">早餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong> 芳婆糕团店(传统早点)<br>
+              <strong>方案B:</strong> 老门东糕团店<br>
+              <strong>方案C:</strong> 三七八巷
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">10:00-12:00</td>
+            <td class="activity-col">上午活动</td>
+            <td class="details-col">
+              <strong>方案A:</strong> 先锋书店五台山总店(⭐⭐⭐ 中国最美书店,文艺打卡,10:00-21:00,🚇1号线-珠江路站)<br>
+              <strong>方案B:</strong> 古生物博物馆(看古生物化石遗迹圣地,免费)<br>
+              <strong>方案C:</strong> 江宁织造博物馆(江宁云锦织造史,感受红楼梦里的大观园,门票30元)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">12:30-13:30</td>
+            <td class="activity-col">午餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('小厨娘淮扬菜', 32.041944, 118.786111)">厨娘淮扬菜</span>(本地人从小吃到大28年老品牌,盲冲)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('枣玛露脊骨土豆汤', 32.044722, 118.779167)">玛露脊骨土豆汤</span>(六年必吃榜爱豆同款,口碑1流)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('1912街区', 32.054722, 118.788333)">912街区</span>(融合菜或西餐)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">14:00-16:30</td>
+            <td class="activity-col">下午活动</td>
+            <td class="details-col">
+              <strong>方案A:</strong><span class="place-link" onclick="navigateTo('颐和路民国公馆区', 32.064444, 118.773333)">和路民国公馆区</span>(一条颐和路半部民国史,体验民国风情,免费,🚇4号线-云南路站)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('国创园', 32.068889, 118.808333)">创园</span>(文化创意产业园,超多好逛小店还能看展,免费)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('南京博物院', 32.046389, 118.808333)">京博物院</span>(如果还没去,提前7天预约)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">17:00-18:30</td>
+            <td class="activity-col">傍晚选择</td>
+            <td class="details-col">
+              <strong>方案A:</strong> 鸡鸣寺(⭐⭐⭐ 南京最古老梵刹,门票10元,无需预约,药师塔祈求健康比较灵验)<br>
+              <strong>方案B:</strong> 钟山风景区(中山陵、明孝陵一带)<br>
+              <strong>方案C:</strong> 玄武湖(独属南京能量场,免费)
+            </td>
+            <td class="note-col"><span class="badge">❌无需预约</span></td>
+          </tr>
+          <tr>
+            <td class="time-col">19:00-20:30</td>
+            <td class="activity-col">晚餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('觅炙现炒海鲜粥火锅', 32.037500, 118.801667)">炙现炒海鲜粥火锅科巷</span>(本地人超爱,很正宗很鲜美)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('伊兹铁板烧', 32.031667, 118.795278)">兹铁板烧</span>(适合约会聚餐老牌餐厅)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('老门东', 32.031111, 118.795556)">老门东老牌人气餐厅</span>(火焰表演很炫酷很适合约会)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">21:00-22:00</td>
+            <td class="activity-col">夜生活选择</td>
+            <td class="details-col">
+              <strong>方案A:</strong><span class="place-link" onclick="navigateTo('百家湖', 31.943333, 118.815000)">家湖</span>(摩天轮俯瞰南京夜景,酒吧一条街超爽,免费)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('白鹭洲公园', 32.025556, 118.792778)">鹭洲公园</span>(古风美景随手拍大片,小桥流水流光溢彩,免费)<br>
+              <strong>方案C:</strong> 回酒店休息准备明日博物院
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 10月7日 -->
+    <div class="section day-section" id="day6">
+      <div class="day-header">📅 10月7日 (星期二) - 博物馆文化日</div>
+      <table>
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>活动</th>
+            <th>备注</th>
+            <th>预约</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time-col">08:30-09:30</td>
+            <td class="activity-col">早餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong> 三七八巷(吃南京纯道早点,感受市井烟火气)<br>
+              <strong>方案B:</strong> 酒店早餐<br>
+              <strong>方案C:</strong> 芳婆糕团店
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">10:00-12:00</td>
+            <td class="activity-col">上午活动</td>
+            <td class="details-col">
+              <strong>方案A:</strong><span class="place-link" onclick="navigateTo('六朝博物馆', 32.048333, 118.790556)">朝博物馆</span>(⭐⭐⭐ 顶级中式美学很震撼,超多免费章可盖,建议预约)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('南京古生物博物馆', 32.070278, 118.820556)">生物博物馆</span>(看古生物化石遗迹圣地,免费)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('南京总统府', 32.044444, 118.792222)">统府</span>(如果还没去,门票35元,提前7天预约)
+            </td>
+            <td class="note-col">建议预约</td>
+          </tr>
+          <tr>
+            <td class="time-col">12:30-13:30</td>
+            <td class="activity-col">午餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('枣玛露脊骨土豆汤', 32.044722, 118.779167)">玛露脊骨土豆汤新街口</span>(秋天吃很舒服,六年必吃榜,口碑1流)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('小厨娘淮扬菜', 32.041944, 118.786111)">厨娘淮扬菜</span>(本地人28年老品牌)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('竹里馆', 32.030556, 118.795833)">竹里馆</span>(超正点老门东氛围)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">14:00-16:30</td>
+            <td class="activity-col">下午活动</td>
+            <td class="details-col">
+              <strong>方案A:</strong>
+              <span class="place-link" onclick="navigateTo('侵华日军南京大屠杀遇难同胞纪念馆', 32.028611, 118.739722)">遇难同胞纪念馆</span>(铭记历史缅怀先烈,免费,提前7天预约,每日8:00可预约后7天内参观名额,🚇2号线-云锦路-2口,⏰8:30-17:30(16:30停止入馆),每周一闭馆,💡每天固定时间有人工讲解,建议穿素色衣物)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('梅园新村纪念馆', 32.045278, 118.785556)">梅园新村纪念馆</span>(了解中共代表团驻地历史,免费)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('江宁织造博物馆', 32.053056, 118.789167)">江宁织造博物馆</span>(门票30元)
+            </td>
+            <td class="note-col"><span class="badge badge-success">✅提前7天</span></td>
+          </tr>
+          <tr>
+            <td class="time-col">17:00-20:00</td>
+            <td class="activity-col">
+              <span class="place-link" onclick="navigateTo('南京博物院', 32.046389, 118.808333)">南京博物院</span>
+            </td>
+            <td class="details-col">
+              <div class="info-box">
+                ⭐⭐⭐⭐⭐ 了解六朝文化和南京历史<br>
+                免费,<strong>已预约17:00-20:00夜场</strong><br>
+                🚇地铁2号线-明故宫-1口<br>
+                📍预约入口：南京博物院官方小cx<br>
+                💡文物不语诉说千年<br>
+                ⭐中午12点前后特展馆人少,民国馆下午较拥挤<br>
+                ❌饮料❌打火机不能带入<br>
+                <br>
+                <strong>⚠️国庆期间特别安排：</strong><br>
+                • 上午9:00发放3000张门票<br>
+                • 下午13:00发放2000张门票<br>
+                • 17:00会增发17:00-21:00延时开放门票<br>
+                • 开放时间：9:00-17:00（16:00停止入场）<br>
+                • 周二至周日开放，周一闭馆（法定节假日除外）
+              </div>
+            </td>
+            <td class="note-col"><span class="badge badge-success">✅已预约</span></td>
+          </tr>
+          <tr>
+            <td class="time-col">20:30-21:30</td>
+            <td class="activity-col">晚餐</td>
+            <td class="details-col">
+              <strong>推荐方案A:</strong><span class="place-link" onclick="navigateTo('口口火山麻辣烫', 32.086389, 118.792222)">口火山麻辣烫</span>(糖水麻辣烫口感都很很绝,小动物周边拍照很可爱)<br>
+              <strong>方案B:</strong><span class="place-link" onclick="navigateTo('回味鸭血粉丝汤', 32.039167, 118.792500)">味鸭血粉丝汤</span>(南京连锁,正宗老味道)<br>
+              <strong>方案C:</strong><span class="place-link" onclick="navigateTo('尹氏鸡汁汤包', 32.038611, 118.794722)">氏鸡汁汤包</span>(夜宵推荐,皮薄馅嫩)
+            </td>
+            <td class="note-col">-</td>
+          </tr>
+          <tr>
+            <td class="time-col">22:00</td>
+            <td class="activity-col">回酒店休息</td>
+            <td class="details-col">整理行李,准备返程</td>
+            <td class="note-col">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 弹窗：预约时间表 -->
+    <div id="modal-booking" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">🎫 景点预约时间表</h2>
+          <button class="modal-close" onclick="closeModal('booking')">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-section">
+            <h3>📱 预约入口</h3>
+            <ul>
+              <li><strong>南京博物院：</strong>南京博物院官方小cx</li>
+              <li><strong>遇难同胞纪念馆：</strong>侵华日军南京大屠杀遇难同胞纪念馆官方gzh</li>
+            </ul>
+          </div>
+
+          <div class="modal-section">
+            <h3>🎯 国庆期间特别放票规则</h3>
+            <div class="info-box">
+              <strong>南京博物院（10月1日-10月8日）：</strong>
+              <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                <li>每日三次放票：9:00、13:00、17:00</li>
+                <li>上午9:00发放3000张门票</li>
+                <li>下午13:00发放2000张门票</li>
+                <li>傍晚17:00增发17:00-21:00延时开放门票</li>
+                <li>提前7天可预约</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>遇难同胞纪念馆：</strong>
+              <ul style="margin-top: 0.5rem; padding-left: 1rem;">
+                <li>每日8:00可预约后7天内的参观名额</li>
+                <li>建议提前7天预约</li>
+                <li>除参观当日不放票之外，提前7天每天连续放票</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="modal-section">
+            <h3>📋 主要景点预约时间</h3>
+            <ul>
+              <li><strong>南京博物院：</strong>免费，提前7天，每日9:00/13:00/17:00三次放票</li>
+              <li><strong>中山陵：</strong>免费，提前7天，每日16:00放票</li>
+              <li><strong>总统府：</strong>35元，提前7天，每日0:00放票</li>
+              <li><strong>遇难同胞纪念馆：</strong>免费，提前7天，每日8:00放票</li>
+              <li><strong>牛首山：</strong>145元，提前2天，每日0:00放票</li>
+              <li><strong>红山动物园：</strong>40元，无需预约</li>
+              <li><strong>夫子庙：</strong>免费，无需预约，24小时开放</li>
+              <li><strong>鸡鸣寺：</strong>10元，无需预约</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗：注意事项 -->
+    <div id="modal-notes" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">⚠️ 特别注意事项</h2>
+          <button class="modal-close" onclick="closeModal('notes')">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-section">
+            <h3>✅ 必须携带</h3>
+            <ul>
+              <li>身份证（所有需预约景点必须携带）</li>
+              <li>充电宝</li>
+              <li>舒适的鞋子</li>
+              <li>外套（早晚温差大）</li>
+            </ul>
+          </div>
+
+          <div class="modal-section">
+            <h3>❌ 禁止携带</h3>
+            <ul>
+              <li>南京博物院：饮料、打火机</li>
+              <li>遇难同胞纪念馆：建议穿素色衣物</li>
+            </ul>
+          </div>
+
+          <div class="modal-section">
+            <h3>📅 闭馆时间</h3>
+            <ul>
+              <li>南京博物院：周一闭馆（法定节假日除外）</li>
+              <li>遇难同胞纪念馆：每周一闭馆（法定节假日除外）</li>
+            </ul>
+          </div>
+
+          <div class="modal-section">
+            <h3>⏰ 入场截止时间</h3>
+            <ul>
+              <li>南京博物院：16:00停止入场（17:00闭馆）</li>
+              <li>遇难同胞纪念馆：16:30停止入馆（17:30闭馆）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 弹窗：旅行小贴士 -->
+    <div id="modal-tips" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">💡 旅行小贴士</h2>
+          <button class="modal-close" onclick="closeModal('tips')">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-section">
+            <h3>✅ 抢票策略</h3>
+            <ul>
+              <li>南京博物院国庆期间每天三次放票机会，如果9:00没抢到，13:00和17:00还有机会</li>
+              <li>建议提前在手机上登录好预约平台，到点准时刷新</li>
+            </ul>
+          </div>
+
+          <div class="modal-section">
+            <h3>✅ 游览建议</h3>
+            <ul>
+              <li>南京博物院中午12点前后特展馆人少，民国馆下午较拥挤</li>
+              <li>中山陵避开中午去，不然很晒</li>
+              <li>红山动物园尽量早点去，人少动物也更活跃</li>
+            </ul>
+          </div>
+
+          <div class="modal-section">
+            <h3>✅ 美食推荐</h3>
+            <ul>
+              <li>必尝鸭血粉丝汤、盐水鸭、小笼包、糖芋苗、桂花糯米藕</li>
+            </ul>
+          </div>
+
+          <div class="modal-section">
+            <p
+              style="text-align: center; font-size: 1rem; color: hsl(var(--primary)); font-weight: 600; margin-top: 1rem;">
+              祝你南京之行愉快！
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 隐藏原来的section -->
+    <div class="section" style="display: none;">
+      <h2 class="section-title">⚠️ 重要预约提醒</h2>
+
+      <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: hsl(var(--foreground));">📱 预约入口</h3>
+      <ul style="list-style: none; padding-left: 0;">
+        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+          <span style="position: absolute; left: 0;">•</span>
+          <strong>南京博物院：</strong>南京博物院官方小cx
+        </li>
+        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+          <span style="position: absolute; left: 0;">•</span>
+          <strong>遇难同胞纪念馆：</strong>侵华日军南京大屠杀遇难同胞纪念馆官方gzh
+        </li>
+      </ul>
+
+      <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: hsl(var(--foreground));">🎯 国庆期间特别放票规则</h3>
+
+      <div class="info-box" style="margin-bottom: 1rem;">
+        <h4 style="margin-bottom: 0.5rem;"><strong>南京博物院（10月1日-10月8日）：</strong></h4>
+        <ul style="list-style: none; padding-left: 1rem;">
+          <li>• 每日三次放票：9:00、13:00、17:00</li>
+          <li>• 上午9:00发放3000张门票</li>
+          <li>• 下午13:00发放2000张门票</li>
+          <li>• 傍晚17:00增发17:00-21:00延时开放门票</li>
+          <li>• 提前7天可预约</li>
+          <li>• <strong>你已预约10月7日17:00-20:00夜场</strong></li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h4 style="margin-bottom: 0.5rem;"><strong>遇难同胞纪念馆：</strong></h4>
+        <ul style="list-style: none; padding-left: 1rem;">
+          <li>• 每日8:00可预约后7天内的参观名额</li>
+          <li>• 建议提前7天预约</li>
+          <li>• 除参观当日不放票之外,提前7天每天连续放票</li>
+        </ul>
+      </div>
+
+      <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: hsl(var(--foreground));">📋 预约时间对照表</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>参观日期</th>
+            <th>南京博物院预约日期</th>
+            <th>中山陵预约日期</th>
+            <th>总统府预约日期</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>10.1</td>
+            <td>9.24</td>
+            <td>9.24</td>
+            <td>9.24</td>
+          </tr>
+          <tr>
+            <td>10.2</td>
+            <td>9.25</td>
+            <td>9.25</td>
+            <td>9.25</td>
+          </tr>
+          <tr>
+            <td>10.3</td>
+            <td>9.26</td>
+            <td>9.26</td>
+            <td>9.26</td>
+          </tr>
+          <tr>
+            <td>10.4</td>
+            <td>9.27</td>
+            <td>9.27</td>
+            <td>9.27</td>
+          </tr>
+          <tr>
+            <td>10.5</td>
+            <td>9.28</td>
+            <td>9.28</td>
+            <td>9.28</td>
+          </tr>
+          <tr>
+            <td>10.6</td>
+            <td>9.29</td>
+            <td>9.29</td>
+            <td>9.29</td>
+          </tr>
+          <tr>
+            <td>10.7</td>
+            <td>9.30</td>
+            <td>9.30</td>
+            <td>9.30</td>
+          </tr>
+          <tr>
+            <td>10.8</td>
+            <td>10.1</td>
+            <td>10.1</td>
+            <td>10.1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- 快捷导航 -->
+  <div class="quick-nav">
+    <button class="nav-btn" onclick="scrollToTop()" title="回到顶部">↑</button>
+  </div>
+
+  <!-- 弹窗挂载区域 - 在body最后,确保遮罩覆盖所有内容 -->
+  <div id="modals-container"></div>
+
+  <script>
+    // 高德地图导航函数 - 打开路线规划页面
+    function navigateTo(name, lat, lon) {
+      // 使用高德地图Schema URI打开路线规划页面(让用户选择出行方式)
+      // amapuri:// 是高德地图官方Schema协议
+      // route表示路线规划,用户可以选择驾车、公交、步行、骑行等方式
+      const schemaUrl = `amapuri://route/plan/?sourceApplication=webapp&dlat=${lat}&dlon=${lon}&dname=${encodeURIComponent(name)}&dev=0&t=0`;
+
+      // 打开高德地图APP的路线规划页面
+      window.location.href = schemaUrl;
+    }
+
+    // 弹窗控制 - 改进版
+    function openModal(modalId) {
+      const modal = document.getElementById('modal-' + modalId);
+      if (modal) {
+        // 将弹窗移到body最后
+        document.body.appendChild(modal);
+
+        // 显示弹窗
+        modal.classList.add('show');
+
+        // 阻止背景滚动
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+        document.body.style.top = `-${window.scrollY}px`;
+      }
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById('modal-' + modalId);
+      if (modal) {
+        // 隐藏弹窗
+        modal.classList.remove('show');
+
+        // 恢复背景滚动
+        const scrollY = document.body.style.top;
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+
+    // 点击遮罩关闭弹窗
+    document.addEventListener('click', function (e) {
+      if (e.target.classList.contains('modal')) {
+        const modalId = e.target.id.replace('modal-', '');
+        closeModal(modalId);
+      }
+    });
+
+    // 回到顶部
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // 添加 data-label 属性以支持移动端显示
+    document.addEventListener('DOMContentLoaded', function () {
+      // 为所有表格添加 data-label
+      const tables = document.querySelectorAll('table');
+      tables.forEach(table => {
+        const headers = Array.from(table.querySelectorAll('th')).map(th => th.textContent.trim());
+        const rows = table.querySelectorAll('tbody tr');
+
+        rows.forEach(row => {
+          const cells = row.querySelectorAll('td');
+          cells.forEach((cell, index) => {
+            if (headers[index]) {
+              cell.setAttribute('data-label', headers[index] + ':');
+            }
+          });
+        });
+      });
+
+      // 日期切换功能
+      const dateButtons = document.querySelectorAll('.date-btn');
+      const daySections = document.querySelectorAll('.day-section');
+
+      // 切换日期的函数
+      function switchToDay(dayId) {
+        // 移除所有激活状态
+        dateButtons.forEach(b => b.classList.remove('active'));
+        daySections.forEach(s => s.classList.remove('active'));
+
+        // 添加当前激活状态
+        const targetButton = document.querySelector(`.date-btn[data-day="${dayId}"]`);
+        const targetSection = document.getElementById(dayId);
+
+        if (targetButton && targetSection) {
+          targetButton.classList.add('active');
+          targetSection.classList.add('active');
+          // 平滑滚动到目标区域
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+
+      // 为日期按钮添加点击事件
+      dateButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+          const targetDay = this.getAttribute('data-day');
+
+          // 更新URL参数
+          const url = new URL(window.location);
+          url.searchParams.set('day', targetDay);
+          window.history.pushState({}, '', url);
+
+          // 切换日期
+          switchToDay(targetDay);
+        });
+      });
+
+      // 页面加载时根据URL参数显示对应日期
+      const urlParams = new URLSearchParams(window.location.search);
+      const dayParam = urlParams.get('day');
+
+      if (dayParam) {
+        // 如果URL中有day参数,显示对应日期
+        switchToDay(dayParam);
+      }
+
+      // 监听浏览器前进后退按钮
+      window.addEventListener('popstate', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const dayParam = urlParams.get('day') || 'day1';
+        switchToDay(dayParam);
+      });
+
+      // 滚动时显示/隐藏导航按钮
+      const quickNav = document.querySelector('.quick-nav');
+
+      window.addEventListener('scroll', function () {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll > 300) {
+          quickNav.style.opacity = '1';
+          quickNav.style.pointerEvents = 'auto';
+        } else {
+          quickNav.style.opacity = '0';
+          quickNav.style.pointerEvents = 'none';
+        }
+      });
+
+      // 初始隐藏导航按钮
+      quickNav.style.opacity = '0';
+      quickNav.style.pointerEvents = 'none';
+      quickNav.style.transition = 'opacity 0.3s ease';
+    });
+  </script>
+</body>
+
+</html>
